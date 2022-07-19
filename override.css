@@ -1,0 +1,346 @@
+/* There are an enormous number of fixes in here for various brain-dead styling choices by the original Evolve team. */
+
+:root {
+  --left-container-size: 290px;
+  --left-container-default: 254px;
+}
+/* Makes the root elements occupy the entire screen space. Makes flex easier. */
+html {
+  min-height: 100%;
+}
+
+/* ================================= */
+/* Primary and secondary toolbar fix */
+/* ================================= */
+
+/* This is for the non-circulation 'evolve menu' */
+
+.evolve-menu {
+  position: relative !important;
+  top: unset !important;
+}
+/* Fix for main toolbar */
+.topdiv > div,
+#PN_ToolBarMain {
+  display: unset !important;
+  padding-top: unset !important;
+  margin-left: unset !important;
+}
+#DL_ScreenMode {
+  height: unset !important;
+  width: unset !important;
+}
+
+.topmenuitems {
+  margin: unset !important;
+}
+#PN_ToolBarMain {
+  all: unset !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0px 40px !important;
+}
+.topdiv {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 0px 20px !important;
+}
+.topdiv .userinfo {
+  order: 3 !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  padding: unset !important;
+  align-items: center;
+  gap: 20px;
+}
+
+.toplogo {
+  padding-top: 0px !important;
+}
+.topdiv > div:first-of-type {
+  height: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fix for secondary toolbar (WIP) */
+#PN_Toolbar .user-menu {
+  height: unset !important;
+}
+#PN_Toolbar .user-menu > ul {
+  display: flex;
+  height: unset !important;
+  flex-wrap: wrap;
+}
+#PN_Toolbar .user-menu > ul li {
+  white-space: nowrap;
+}
+/* ================================ */
+/* Main content flex conversion fix */
+/* ================================ */
+
+/* Styling for form and custom content container */
+#form1 {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+#form1 > *:not(.topdiv) {
+  flex-basis: 0 !important;
+}
+#form1 .smk-contentContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 10px;
+}
+
+#form1 .smk-contentContainer > * {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+/* Fixes margin and padding styles for the left content container */
+*:is(.detailsleftdiv-container-circ, .detailsleftdiv):not(.gvmodalsearch) {
+  float: unset !important;
+  max-width: var(--left-container-size);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: min-content;
+  margin: unset !important;
+}
+
+/* Allows left divider inputs to expand */
+*:is(.detailsleftdiv-container-circ, .detailsleftdiv)
+  *:is(input[type='text'], textarea) {
+  max-width: var(--left-container-size) !important;
+}
+
+/* Allows account details divider to expand horizontally. Probably a better way to do this, but it works. */
+*:is(.detailsleftdiv-container-circ, .detailsleftdiv) > div:last-of-type {
+  /* flex-grow: 1; */
+  flex-basis: 0;
+}
+
+*:is(.detailsleftdiv-container-circ, .detailsleftdiv)
+  > div:last-of-type
+  #PN_CircMode {
+  display: flex;
+}
+*:is(.detailsleftdiv-container-circ, .detailsleftdiv)
+  > div:last-of-type
+  #PN_AccountDetails {
+  margin: 0 !important;
+  flex-grow: 1;
+}
+
+/* Removes default margin from barcode scan section, as well as details section */
+#PN_TabBarcode {
+  margin: 0px !important;
+  width: unset !important;
+  float: unset !important;
+}
+.right-section-container.rsc-details {
+  margin: unset !important;
+}
+.right-section-container {
+  margin: unset !important;
+}
+/* Justifies barcode scan input below label */
+#PN_CircModeCheckOut,
+#PN_CircModeCheckIn {
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* ================================ */
+/* Modal size and border radius fix */
+/* ================================ */
+
+/* Fixes modal border to be consistent. Seems like the dev team forgot to make top and bottom have a radius OR there was a terrible stylistic choice. */
+.modal,
+#PN_PatronSearch,
+#PN_EditDetails {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Holding and Patron search modal size increase */
+#PN_HoldingSearch,
+#PN_PatronSearch {
+  top: 50% !important;
+  left: 50% !important;
+  height: 80vh !important;
+  width: 90vw !important;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+/* Adapt search modals for flex */
+*:is(#PN_HoldingSearch, #PN_PatronSearch) > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+*:is(#PN_HoldingSearch, #PN_PatronSearch) > div > .modal-body {
+  display: flex;
+  gap: 15px;
+  flex-grow: 1;
+  max-height: unset !important;
+}
+*:is(#PN_HoldingSearch, #PN_PatronSearch) > div > .modal-body .detailsleftdiv {
+  height: min-content;
+}
+*:is(#PN_HoldingSearch, #PN_PatronSearch)
+  > div
+  > .modal-body
+  .detailsleftdiv
+  > div {
+  width: var(--left-container-default) !important;
+}
+*:is(#PN_HoldingSearch, #PN_PatronSearch)
+  > div
+  > .modal-body
+  *:is(.detailsleftdiv, .rightsectiondiv) {
+  margin: unset !important;
+}
+/* ========== */
+/* MISC FIXES */
+/* ========== */
+
+/* Puts the details label inline with the header. I imagine this was the original intent, but it looks better regardless. */
+*:is(.modal, #PN_PatronSearch, #PN_EditDetails, #UP_HOSearch) .detailslabel {
+  display: inline !important;
+}
+/* Makes the margin the same as the gap between the main content containers. Insubstantial fix, but it bothered me. */
+.circulation-information {
+  margin-left: 10px;
+}
+/* Makes distance from right and top the same for X buttons. I'd like to make the whole thing flex-based, but I don't want to mess with their loading component. */
+input.close {
+  margin-top: 6px;
+}
+/* Makes the 'Number Circle' look a bit better. This is coded so poorly I can't truly fix it, but this cleans it up a tad. */
+.numberCircle {
+  margin: 0px 0px 0px -10px !important;
+  transform: translate(0px, -1.5px);
+}
+.numberCircle > span {
+  margin-left: 1.5px !important;
+}
+
+/* Secondary navbar custom styles */
+.smk-customLabel {
+  font-size: 10px;
+  vertical-align: super;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  opacity: var(--custom-label-opacity, 0);
+}
+
+/* =============== */
+/* LOADING SPINNER */
+/* =============== */
+
+.spinner {
+  -webkit-animation: rotator 1.4s linear infinite;
+  animation: rotator 1.4s linear infinite;
+}
+
+@-webkit-keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  -webkit-animation: dash 1.4s ease-in-out infinite,
+    colors 5.6s ease-in-out infinite;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+
+@-webkit-keyframes colors {
+  0% {
+    stroke: #008bed;
+  }
+  25% {
+    stroke: #008bed;
+  }
+  50% {
+    stroke: #008bed;
+  }
+  75% {
+    stroke: #008bed;
+  }
+  100% {
+    stroke: #008bed;
+  }
+}
+
+@keyframes colors {
+  0% {
+    stroke: #008bed;
+  }
+  25% {
+    stroke: #008bed;
+  }
+  50% {
+    stroke: #008bed;
+  }
+  75% {
+    stroke: #008bed;
+  }
+  100% {
+    stroke: #008bed;
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}

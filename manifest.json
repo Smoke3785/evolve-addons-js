@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+
+  "name": "Smoke's Evolve Addons",
+  "description": "Chromium extension that adds functionality to Evolve by InfoVision Software, Inc.",
+  "version": "0.0.0.1",
+  "icons": {
+    "16": "logo/favicon-16x16.png",
+    "32": "logo/favicon-32x32.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.infovisionsoftware.com/*"],
+      "css": ["override.css"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "https://*.evolve-library.infovisionsoftware.com/*",
+    "storage"
+  ],
+  "permissions": ["activeTab", "tabs", "storage"],
+  "host_permissions": ["https://*.infovisionsoftware.com/*"]
+}
